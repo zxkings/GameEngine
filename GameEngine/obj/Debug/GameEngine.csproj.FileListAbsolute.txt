@@ -1,0 +1,16 @@
+C:\Users\user\source\repos\GameEngine\GameEngine\bin\Debug\GameEngine.exe.config
+C:\Users\user\source\repos\GameEngine\GameEngine\bin\Debug\GameEngine.exe
+C:\Users\user\source\repos\GameEngine\GameEngine\bin\Debug\GameEngine.pdb
+C:\Users\user\source\repos\GameEngine\GameEngine\bin\Debug\FNA.dll
+C:\Users\user\source\repos\GameEngine\GameEngine\obj\Debug\GameEngine.csprojAssemblyReference.cache
+C:\Users\user\source\repos\GameEngine\GameEngine\obj\Debug\GameEngine.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\GameEngine\GameEngine\obj\Debug\GameEngine.csproj.CopyComplete
+C:\Users\user\source\repos\GameEngine\GameEngine\obj\Debug\GameEngine.exe
+C:\Users\user\source\repos\GameEngine\GameEngine\obj\Debug\GameEngine.pdb
+C:\Users\user\source\repos\GameEngine\GameEngine\bin\Debug\Content\test.png
+C:\Users\user\source\repos\GameEngine\GameEngine\bin\Debug\Content\green_hill.png
+C:\Users\user\source\repos\GameEngine\GameEngine\bin\Debug\Content\spike.png
+C:\Users\user\source\repos\GameEngine\GameEngine\bin\Debug\Content\Ball.png
+C:\Users\user\source\repos\GameEngine\GameEngine\bin\Debug\Content\Racket.png
+C:\Users\user\source\repos\GameEngine\GameEngine\bin\Debug\Content\Racket2.png
+C:\Users\user\source\repos\GameEngine\GameEngine\bin\Debug\Content\New Piskel.png
