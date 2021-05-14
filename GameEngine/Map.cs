@@ -51,12 +51,12 @@ namespace GameEngine
         public Rectangle wall;
         public bool active;
 
-        public void wall()
+        public  wall()
         {
             
         }
 
-        public void wall(Rectangle inputRectangle)
+        public  wall(Rectangle inputRectangle)
         {
             wall = inputRectangle;
         }
