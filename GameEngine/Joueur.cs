@@ -36,10 +36,10 @@ namespace GameEngine
             base.Load(content);
         }
 
-        public override void Update(List<GameObject> objects)
+        public override void Update(List<GameObject> objects, Map map)
         {
             Input();
-            base.Update(objects);
+            base.Update(objects , map);
         }
 
 

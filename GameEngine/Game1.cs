@@ -16,17 +16,22 @@ namespace GameEngine
         SpriteBatch spriteBatch;
         
         public List<GameObject> objects = new List<GameObject>() ;
+        public Map map = new Map() ;
 
         float s;
         int x, y;
-        KeyboardState ks;
-        Texture2D Animation;        
+        KeyboardState ks;      
 
 
         public Game1() //This is the constructor, this function is called whenever the game class is created.
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.IsFullScreen = false;
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -46,9 +51,11 @@ namespace GameEngine
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            LoadLevel();
-            Animation = Content.Load<Texture2D>("New Piskel");
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            map.Load(Content);
+            LoadLevel();
+
         }
 
         /// <summary>
@@ -60,56 +67,7 @@ namespace GameEngine
         {
             //Update the things FNA handles for us underneath the hood:
 
-            s += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-
-
-            if(s > 10f)
-            {
-                if (x == 320  && y == 320 * 2)
-                {
-                    x = 0;
-                    y = 0;
-                }
-
-                else if (x == 320 * 2)
-                {
-                    x = 0;
-                    y += 320;
-                }
-                else
-                {
-                    x += 320  ;
-                }
-                Console.WriteLine("X = {0}  Y = {1}", x, y);
-                s = 0;
-            }
-
-
-
-
-
-            ks = Keyboard.GetState();
-            if (ks.IsKeyDown(Keys.Up))
-            {
-                y-=5;
-                Console.WriteLine("X = {0}  Y = {1}", x, y);
-            }
-            if (ks.IsKeyDown(Keys.Down))
-            {
-                y+=5;
-                Console.WriteLine("X = {0}  Y = {1}", x, y);
-            }
-            if (ks.IsKeyDown(Keys.Left))
-            {
-                x-=5;
-                Console.WriteLine("X = {0}  Y = {1}", x, y);
-            }
-            if (ks.IsKeyDown(Keys.Right))
-            {
-                x+=5;
-                Console.WriteLine("X = {0}  Y = {1}", x, y);
-            }
-
+           
             UpdateObjects();
 
             base.Update(gameTime);
@@ -122,9 +80,10 @@ namespace GameEngine
         {
             //This will clear what's on the screen each frame, if we don't clear the screen will look like a mess:
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
+
+            spriteBatch.Begin(SpriteSortMode.BackToFront , BlendState.AlphaBlend);
             DrawObjects();
-            spriteBatch.Draw(Animation, new Rectangle(0,0 ,360 , 360) , new Rectangle(x,y,360,360) , Color.White);
+            map.DrawWalls(spriteBatch);
             spriteBatch.End();
             //Draw the things FNA handles for us underneath the hood:
             base.Draw(gameTime);
@@ -132,7 +91,11 @@ namespace GameEngine
 
         public void LoadLevel()
         {
-            objects.Add(new Joueur());
+            objects.Add(new Joueur(new Vector2(0f,0f)));
+
+            map.walls.Add(new Wall(new Rectangle(256, 256, 256, 256)));
+            map.walls.Add(new Wall(new Rectangle(0, 650, 1280, 128)));
+
             loadObjects();
         }
 
@@ -151,7 +114,7 @@ namespace GameEngine
         {
             for (int i = 0; i < objects.Count; i++)
             {
-                objects[i].Update(objects);
+                objects[i].Update(objects, map);
             }
         }
 

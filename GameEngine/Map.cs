@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace GameEngine
 {
-    class Map
+    public class Map
     {
         public List<Wall> walls = new List<Wall>();
         Texture2D wallImage;
@@ -22,10 +22,10 @@ namespace GameEngine
 
         public void Load(ContentManager content)
         {
-            wallImage = content.Load<Texture2D>("Pixel");
+            wallImage = content.Load<Texture2D>("pixel");
         }
 
-        public Rectangle checkCollision(Rectangle input)
+        public Rectangle CheckCollision(Rectangle input)
         {
             for (int i = 0; i< walls.Count; i++)
             {
@@ -48,15 +48,16 @@ namespace GameEngine
 
     public class Wall
     {
-        public Rectangle wall;
-        public bool active;
 
-        public  wall()
+        public Rectangle wall;
+        public bool active = true;
+
+        public  Wall()
         {
             
         }
 
-        public  wall(Rectangle inputRectangle)
+        public  Wall(Rectangle inputRectangle)
         {
             wall = inputRectangle;
         }
