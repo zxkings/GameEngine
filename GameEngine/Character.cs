@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace GameEngine
 {
-    class Character : GameObject
+    public class Character : GameObject
     {
         public Vector2 velocity;
 
@@ -69,6 +69,52 @@ namespace GameEngine
                 velocity.Y = maxFallVelocity;
         }
 
+        protected void MoveRight()
+        {
+            velocity.X += accel + decel;
+
+            if (velocity.X > maxSpeed)
+                velocity.X = maxSpeed ;
+
+            direction.X = 1;
+
+        }
+
+        protected void Moveleft()
+        {
+            velocity.X -= accel + decel;
+
+            if (velocity.X < -maxSpeed)
+                velocity.X = -maxSpeed;
+
+            direction.X = -1;
+
+        }
+
+        protected void MoveDown()
+        {
+            velocity.Y += accel + decel;
+
+            if (velocity.X > maxSpeed)
+                velocity.X = maxSpeed;
+
+            direction.Y = 1;
+
+        }
+
+        protected void MoveUp()
+        {
+            velocity.Y -= accel + decel;
+
+            if (velocity.Y < -maxSpeed)
+                velocity.Y = -maxSpeed;
+
+            direction.Y = -1;
+
+        }
+
+
+
         protected virtual bool CheckCollisions(Map map, List<GameObject> objects, bool xAxis)
         {
             Rectangle futureBoundingBox = BoundingBox;
@@ -102,6 +148,7 @@ namespace GameEngine
             {
                 if (applyGravity == true && velocity.Y >= gravity && (futureBoundingBox.Bottom > wallCollision.Top - maxSpeed) && (futureBoundingBox.Bottom <= wallCollision.Top + velocity.Y))
                 {
+                    LandResponse(wallCollision);
                     return true;
                 }
                 else

@@ -20,6 +20,7 @@ namespace GameEngine
         public float rotation = 0f, scale = 1f ,layerDepth = 0.5f;
         public bool active = true ;
         protected Vector2 centre;
+        protected Vector2 direction = new Vector2(1, 0);
 
         public bool collidable = true;
         protected int boundingBoxWidth, boundingBoxHeight;

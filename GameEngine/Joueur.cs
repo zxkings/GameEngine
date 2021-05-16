@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace GameEngine
 {
-    public class Joueur : GameObject
+    public class Joueur : Character
     {
         
 
@@ -48,22 +48,22 @@ namespace GameEngine
             ks = Keyboard.GetState();
             if (ks.IsKeyDown(Keys.Right))
             {
-                position.X += 5;
+                MoveRight();
             }
             else if (ks.IsKeyDown(Keys.Left))
             {
-                position.X -= 5;
+                Moveleft();
             }
 
             if (ks.IsKeyDown(Keys.Down))
             {
-                position.Y += 5;
+                MoveDown() ;
             }
             else if (ks.IsKeyDown(Keys.Up))
             {
-                position.Y -= 5;
+                MoveUp() ;
             }
-
+            Console.WriteLine("X = {0} , y = {1}", velocity.X, velocity.Y);
         }
 
 
