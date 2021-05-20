@@ -24,7 +24,7 @@ namespace GameEngine
         const float maxFallVelocity = 32;
 
         protected bool jumping;
-        public static bool applyGravity = false;
+        public static bool applyGravity = true;
 
         public override void Initialize()
         {
@@ -35,6 +35,7 @@ namespace GameEngine
 
         public override void Update(List<GameObject> objects, Map map)
         {
+            UpdateMovement(objects, map);
             base.Update(objects, map);
         }
 
@@ -55,6 +56,7 @@ namespace GameEngine
                 ApplyGravity(map);
 
             velocity.X = TendToZero(velocity.X, decel);
+
             if (applyGravity == false)
                 velocity.Y = TendToZero(velocity.Y, decel);
         }
@@ -95,8 +97,8 @@ namespace GameEngine
         {
             velocity.Y += accel + decel;
 
-            if (velocity.X > maxSpeed)
-                velocity.X = maxSpeed;
+            if (velocity.Y > maxSpeed)
+                velocity.Y = maxSpeed;
 
             direction.Y = 1;
 
@@ -111,6 +113,20 @@ namespace GameEngine
 
             direction.Y = -1;
 
+        }
+
+        protected bool Jump(Map map)
+        {
+            if (jumping == true)
+                return false;
+
+            if (velocity.Y == 0 && OnGround(map) != Rectangle.Empty)
+            {
+                velocity.Y -= jumpVelocity;
+                jumping = true;
+                return true;
+            }
+            return false;
         }
 
 
@@ -134,7 +150,15 @@ namespace GameEngine
 
             }
 
-            else if (xAxis == false && velocity.Y != 0)
+            else if ( applyGravity == false && xAxis == false && velocity.Y != 0)
+            {
+                if (velocity.Y > 0)
+                    futureBoundingBox.Y += maxY;
+                else
+                    futureBoundingBox.Y -= maxY;
+            }
+
+            else if (applyGravity == true && xAxis == false && velocity.Y != gravity)
             {
                 if (velocity.Y > 0)
                     futureBoundingBox.Y += maxY;

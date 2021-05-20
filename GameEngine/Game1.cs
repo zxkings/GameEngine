@@ -69,6 +69,7 @@ namespace GameEngine
 
            
             UpdateObjects();
+            map.Update(objects);
 
             base.Update(gameTime);
         }
@@ -91,10 +92,15 @@ namespace GameEngine
 
         public void LoadLevel()
         {
-            objects.Add(new Joueur(new Vector2(0f,0f)));
+            objects.Add(new Joueur());
+            objects.Add(new Enemy(new Vector2(640, 640) ) );
 
             map.walls.Add(new Wall(new Rectangle(256, 256, 256, 256)));
             map.walls.Add(new Wall(new Rectangle(0, 650, 1280, 128)));
+
+            map.LoadMap(Content);
+
+            map.decor.Add(new Decor(Vector2.Zero,"background", 1f));
 
             loadObjects();
         }
@@ -123,6 +129,10 @@ namespace GameEngine
             for (int i = 0; i < objects.Count; i++)
             {
                 objects[i].Draw(spriteBatch);
+            }
+            for (int i = 0; i <map.decor.Count; i++)
+            {
+                map.decor[i].Draw(spriteBatch);
             }
         }
 

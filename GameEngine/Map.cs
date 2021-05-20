@@ -13,12 +13,20 @@ namespace GameEngine
 {
     public class Map
     {
+        public List<Decor> decor = new List<Decor>() ;
         public List<Wall> walls = new List<Wall>();
         Texture2D wallImage;
 
         public int mapWidth = 15;
         public int mapHeight = 9;
         public int tileSize = 128;
+
+
+        public void LoadMap(ContentManager content)
+        {
+            for (int i = 0; i < decor.Count; i++)
+                decor[i].Load(content, decor[i].imagePath);
+        }
 
         public void Load(ContentManager content)
         {
@@ -34,6 +42,14 @@ namespace GameEngine
             }
             return Rectangle.Empty;
         }
+
+
+        public void Update(List<GameObject> objects)
+        {
+            for (int i = 0; i < decor.Count; i++)
+                decor[i].Update(objects, this);
+        }
+
 
         public void DrawWalls(SpriteBatch spriteBatch)
         {
@@ -62,4 +78,62 @@ namespace GameEngine
             wall = inputRectangle;
         }
     }
+
+    public class Decor : GameObject
+    {
+        public string imagePath;
+        public Rectangle sourceRect;
+
+        public string Name
+        {
+            get
+            {
+                return imagePath;
+            }
+        }
+
+        public Decor()
+        {
+            collidable = false;
+        }
+
+        public Decor(Vector2 inputPosition, string inputImagePath, float inputDepth)
+        {
+            position = inputPosition;
+            imagePath = inputImagePath;
+            layerDepth = inputDepth;
+            active = true;
+            collidable = false;
+        }
+
+        public virtual void Load(ContentManager content, string asset)
+        {
+            image = content.Load<Texture2D>(asset);
+            image.Name = asset;
+
+            boundingBoxWidth = image.Width;
+            boundingBoxHeight = image.Height;
+
+            if (sourceRect == Rectangle.Empty)
+                sourceRect = new Rectangle(0, 0, image.Width, image.Height);
+        }
+
+        public void SetImage(Texture2D input, string newPath)
+        {
+            image = input;
+            imagePath = newPath;
+            boundingBoxWidth = sourceRect.Width = image.Width;
+            boundingBoxHeight = sourceRect.Height = image.Height;
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (image != null && active == true)
+                spriteBatch.Draw(image, position, sourceRect , Color, rotation, Vector2.Zero, scale, SpriteEffects.None, layerDepth);
+
+            base.Draw(spriteBatch);
+        }
+
+    }
+
 }

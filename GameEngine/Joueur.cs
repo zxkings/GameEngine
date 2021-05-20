@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace GameEngine
 {
-    public class Joueur : Character
+    public class Joueur : FireCharacter
     {
         
 
@@ -38,33 +38,52 @@ namespace GameEngine
 
         public override void Update(List<GameObject> objects, Map map)
         {
-            Input();
+            Input(objects,map);
             base.Update(objects , map);
         }
 
 
-        private void Input()
+        private void Input(List<GameObject> objects, Map map)
         {
             ks = Keyboard.GetState();
-            if (ks.IsKeyDown(Keys.Right))
+            if(Character.applyGravity == false)
             {
-                MoveRight();
+                if (ks.IsKeyDown(Keys.Right))
+                {
+                    MoveRight();
+                }
+                else if (ks.IsKeyDown(Keys.Left))
+                {
+                    Moveleft();
+                }
+
+                if (ks.IsKeyDown(Keys.Down))
+                {
+                    MoveDown();
+                }
+                else if (ks.IsKeyDown(Keys.Up))
+                {
+                    MoveUp();
+                }
             }
-            else if (ks.IsKeyDown(Keys.Left))
+            else
             {
-                Moveleft();
+                if (ks.IsKeyDown(Keys.Right))
+                    MoveRight();
+                else if (ks.IsKeyDown(Keys.Left))
+                    Moveleft();
+
+                if (ks.IsKeyDown(Keys.Up))
+                    Jump(map);
             }
 
-            if (ks.IsKeyDown(Keys.Down))
-            {
-                MoveDown() ;
-            }
-            else if (ks.IsKeyDown(Keys.Up))
-            {
-                MoveUp() ;
-            }
-            Console.WriteLine("X = {0} , y = {1}", velocity.X, velocity.Y);
+            if (ks.IsKeyDown(Keys.Space))
+                Fire();
+
+
         }
+
+        
 
 
          

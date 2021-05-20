@@ -23,7 +23,6 @@ C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\green_hil
 C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\New Piskel.png
 C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\Racket.png
 C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\Racket2.png
-C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\spike.png
 C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\test.png
 C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\GameEngine.exe.config
 C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\GameEngine.exe
@@ -31,3 +30,6 @@ C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\GameEngine.pdb
 C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\FNA.dll
 C:\Users\user\Documents\GitHub\GameEngine\GameEngine\obj\Debug\GameEngine.csproj.CopyComplete
 C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\pixel.png
+C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\bullet.png
+C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\enemy.png
+C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\background.png
