@@ -33,3 +33,15 @@ C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\pixel.png
 C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\bullet.png
 C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\enemy.png
 C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\background.png
+C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\Audio\explosion.wav
+C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\Audio\song.wav
+C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\Font\Arial.xnb
+C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\Animations\shyboy.anm
+C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\spritesheet.png
+C:\Users\user\Documents\GitHub\GameEngine\GameEngine\obj\Debug\GameEngine.Editor.resources
+C:\Users\user\Documents\GitHub\GameEngine\GameEngine\obj\Debug\GameEngine.csproj.GenerateResource.cache
+C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\128grid.png
+C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\decorplaceholder.png
+C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\orbsheet.png
+C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\sprite.png
+C:\Users\user\Documents\GitHub\GameEngine\GameEngine\bin\Debug\Content\Levels\Level1.LVL

@@ -18,6 +18,13 @@ namespace GameEngine
 
         Random random = new Random();
 
+        SoundEffect explosion;
+
+        public Enemy()
+        {
+
+        }
+
         public Enemy(Vector2 vect)
         {
 
@@ -35,6 +42,7 @@ namespace GameEngine
         public override void Load(ContentManager content)
         {
             image = content.Load <Texture2D>("enemy") ;
+            explosion = content.Load<SoundEffect>("Audio\\explosion");
 
             base.Load(content);
         }
@@ -56,6 +64,8 @@ namespace GameEngine
         {
             active = false;
             respawnTimer = maxRespawnTimer;
+            Player.score++;
+            //explosion.Play();
 
 
 

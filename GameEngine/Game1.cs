@@ -18,6 +18,9 @@ namespace GameEngine
         public List<GameObject> objects = new List<GameObject>() ;
         public Map map = new Map() ;
 
+        GameHUD gameHUD = new GameHUD();
+        Editor editor;
+
         float s;
         int x, y;
         KeyboardState ks;      
@@ -28,10 +31,11 @@ namespace GameEngine
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
-            graphics.IsFullScreen = false;
-            graphics.ApplyChanges();
+            Resolution.Init(ref graphics);
+            Resolution.SetResolution(1280, 720, false);
+            Resolution.ResetViewport();
+
+
         }
 
         /// <summary>
@@ -42,7 +46,14 @@ namespace GameEngine
             x = 0;
             y = 0;
             float s = 0f;
+
+#if DEBUG   
+            editor = new Editor(this);
+            editor.Show();  
+#endif
+
             base.Initialize();
+            Camera.Initialize();
         }
 
         /// <summary>
@@ -53,8 +64,13 @@ namespace GameEngine
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+#if DEBUG
+            editor.LoadTextures(Content);
+#endif
+
             map.Load(Content);
-            LoadLevel();
+            gameHUD.Load(Content);
+            LoadLevel("Level1.LVL");
 
         }
 
@@ -70,6 +86,11 @@ namespace GameEngine
            
             UpdateObjects();
             map.Update(objects);
+            UpdateCamera();
+
+#if DEBUG
+            editor.Update(objects, map);
+#endif
 
             base.Update(gameTime);
         }
@@ -82,25 +103,34 @@ namespace GameEngine
             //This will clear what's on the screen each frame, if we don't clear the screen will look like a mess:
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin(SpriteSortMode.BackToFront , BlendState.AlphaBlend);
+            Resolution.BeginDraw();
+
+            spriteBatch.Begin(SpriteSortMode.BackToFront , BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Camera.GetTransformMatrix());
+#if DEBUG
+            editor.Draw(spriteBatch);
+#endif
             DrawObjects();
             map.DrawWalls(spriteBatch);
             spriteBatch.End();
+
+            gameHUD.Draw(spriteBatch);
+
             //Draw the things FNA handles for us underneath the hood:
             base.Draw(gameTime);
         }
 
-        public void LoadLevel()
+        public void LoadLevel(string fileName)
         {
-            objects.Add(new Joueur());
-            objects.Add(new Enemy(new Vector2(640, 640) ) );
+            Global.levelName = fileName;
 
-            map.walls.Add(new Wall(new Rectangle(256, 256, 256, 256)));
-            map.walls.Add(new Wall(new Rectangle(0, 650, 1280, 128)));
+            LevelData levelData = XmlHelper.Load("Content\\Levels\\" + fileName);
+
+            map.walls = levelData.walls;
+            map.decor = levelData.decor;
+            objects = levelData.objects;
 
             map.LoadMap(Content);
 
-            map.decor.Add(new Decor(Vector2.Zero,"background", 1f));
 
             loadObjects();
         }
@@ -135,6 +165,15 @@ namespace GameEngine
                 map.decor[i].Draw(spriteBatch);
             }
         }
+
+        private void UpdateCamera()
+        {
+            if (objects.Count == 0)
+                return;
+
+            Camera.Update(objects[0].position);
+        }
+
 
     }
 }

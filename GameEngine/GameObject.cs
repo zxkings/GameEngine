@@ -28,6 +28,8 @@ namespace GameEngine
         Texture2D boundingBoxImage;
         const bool drawBoundingBoxes = true;
 
+        public Vector2 startPosition = new Vector2(-1, -1);
+
         public Rectangle BoundingBox
         {
             get
@@ -43,7 +45,13 @@ namespace GameEngine
 
         public virtual void Initialize()
         {
+            if (startPosition == new Vector2(-1, -1))
+                startPosition = position;
+        }
 
+        public virtual void SetToDefaultPosition()
+        {
+            startPosition = position;
         }
 
         public virtual void Load(ContentManager content)

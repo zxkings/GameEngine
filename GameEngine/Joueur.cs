@@ -10,30 +10,38 @@ using Microsoft.Xna.Framework.Media;
 
 namespace GameEngine
 {
-    public class Joueur : FireCharacter
+    public class Player : FireCharacter
     {
-        
+        public static int score;
 
         KeyboardState ks;
-        public Joueur()
+        public Player()
         {
             position = new Vector2(640, 360);
         }
 
-        public Joueur(Vector2 newPostion)
+        public Player(Vector2 newPostion)
         {
             position = newPostion;
         }
 
         public override void Initialize()
         {
+            score = 0;
             base.Initialize();
         }
 
         public override void Load(ContentManager content)
         {
-            image = content.Load<Texture2D>("Test");
+            image = content.Load<Texture2D>("spritesheet");
+
+            LoadAnimation("shyboy.anm", content);
+            ChangeAnimation(Animations.IdleLeft);
+
+
             base.Load(content);
+
+            boundingBoxOffset.X = 0; boundingBoxOffset.Y = 0; boundingBoxWidth = animationSet.width; boundingBoxHeight = animationSet.height;
         }
 
         public override void Update(List<GameObject> objects, Map map)
@@ -80,13 +88,34 @@ namespace GameEngine
             if (ks.IsKeyDown(Keys.Space))
                 Fire();
 
+        }
+
+        protected override void UpdateAnimations()
+        {
+            if (currentAnimation == null)
+                return;
+
+            base.UpdateAnimations();
+
+            if (velocity != Vector2.Zero || jumping == true)
+            {
+                if (direction.X < 0 && AnimationIsNot(Animations.RunLeft))
+                    ChangeAnimation(Animations.RunLeft);
+                else if (direction.X > 0 && AnimationIsNot(Animations.RunRight))
+                    ChangeAnimation(Animations.RunRight);
+            }
+            else if (velocity != Vector2.Zero || jumping == false)
+            {
+                if (direction.X < 0 && AnimationIsNot(Animations.IdleLeft))
+                    ChangeAnimation(Animations.IdleLeft);
+                else if (direction.X > 0 && AnimationIsNot(Animations.IdleRight))
+                    ChangeAnimation(Animations.IdleRight);
+            }
 
         }
 
-        
 
 
-         
 
     }
 }

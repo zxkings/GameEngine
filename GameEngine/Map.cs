@@ -60,6 +60,15 @@ namespace GameEngine
             }
         }
 
+        public Point GetTileIndex(Vector2 inputPosition)
+        {
+            if (inputPosition == new Vector2(-1, -1))
+                return new Point(-1, -1);
+
+
+                    return new Point((int)inputPosition.X / tileSize, (int)inputPosition.Y / tileSize);
+        }
+
     }
 
     public class Wall
@@ -131,7 +140,7 @@ namespace GameEngine
             if (image != null && active == true)
                 spriteBatch.Draw(image, position, sourceRect , Color, rotation, Vector2.Zero, scale, SpriteEffects.None, layerDepth);
 
-            base.Draw(spriteBatch);
+
         }
 
     }
