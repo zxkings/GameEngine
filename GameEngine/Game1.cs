@@ -15,8 +15,8 @@ namespace GameEngine
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         
-        public List<GameObject> objects = new List<GameObject>() ;
         public Map map = new Map() ;
+        public List<GameObject> objects = new List<GameObject>() ;
 
         GameHUD gameHUD = new GameHUD();
         Editor editor;
@@ -54,6 +54,7 @@ namespace GameEngine
 
             base.Initialize();
             Camera.Initialize();
+            Global.Initialize(this);
         }
 
         /// <summary>

@@ -2,7 +2,7 @@
 <LevelData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Player>
     <position>
-      <X>640</X>
+      <X>696.540161</X>
       <Y>522</Y>
     </position>
     <Color>
@@ -18,7 +18,7 @@
     <active>true</active>
     <collidable>true</collidable>
     <startPosition>
-      <X>640</X>
+      <X>696.540161</X>
       <Y>522</Y>
     </startPosition>
     <velocity>
@@ -28,8 +28,8 @@
   </Player>
   <Enemy>
     <position>
-      <X>360</X>
-      <Y>330</Y>
+      <X>963</X>
+      <Y>204</Y>
     </position>
     <Color>
       <B>255</B>
@@ -44,8 +44,8 @@
     <active>true</active>
     <collidable>false</collidable>
     <startPosition>
-      <X>360</X>
-      <Y>330</Y>
+      <X>963</X>
+      <Y>204</Y>
     </startPosition>
     <velocity>
       <X>0</X>
@@ -62,6 +62,32 @@
         <Location>
           <X>0</X>
           <Y>650</Y>
+        </Location>
+      </wall>
+      <active>true</active>
+    </Wall>
+    <Wall>
+      <wall>
+        <X>256</X>
+        <Y>256</Y>
+        <Width>256</Width>
+        <Height>256</Height>
+        <Location>
+          <X>256</X>
+          <Y>256</Y>
+        </Location>
+      </wall>
+      <active>true</active>
+    </Wall>
+    <Wall>
+      <wall>
+        <X>896</X>
+        <Y>512</Y>
+        <Width>256</Width>
+        <Height>128</Height>
+        <Location>
+          <X>896</X>
+          <Y>512</Y>
         </Location>
       </wall>
       <active>true</active>

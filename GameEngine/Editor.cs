@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
@@ -42,7 +43,7 @@ namespace GameEngine
             Enemy, NumOfObjects,
         };
 
-        const string objectsNamespace = "FNAClassCode."; //IMPORTANT: Type the namespace here that all of your classes will be in! Make sure you spell it exactly and put a . at the end!
+        const string objectsNamespace = "GameEngine."; //IMPORTANT: Type the namespace here that all of your classes will be in! Make sure you spell it exactly and put a . at the end!
 
         public Editor(Game1 inputGame)
         {
@@ -83,7 +84,8 @@ namespace GameEngine
 
                 //Create a new instance of what was selected:
                 Type type = Type.GetType(objectsNamespace + selectedObject.ToString()); //First string should be the namespace the class is located in.
-                    GameObject newObject = (GameObject)Activator.CreateInstance(type);
+
+                GameObject newObject = (GameObject)Activator.CreateInstance(type);
 
                 if (newObject == null)
                     return; //No valid object created.
@@ -862,8 +864,8 @@ namespace GameEngine
             //Load all of our objects:
             for (int i = 0; i < game.objects.Count; i++)
             {
-                game.objects[i].Load(game.Content);
                 game.objects[i].Initialize();
+                game.objects[i].Load(game.Content);
             }
 
             //Start us in wall mode:
